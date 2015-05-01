@@ -1,1 +1,1 @@
-# dependency-management-publisher
+# dependency-management
