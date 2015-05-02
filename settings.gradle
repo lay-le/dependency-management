@@ -1,0 +1,6 @@
+rootProject.name = 'dependency-management'
+
+include 'ServicePublisher'
+
+include 'ServiceConsumer'
+

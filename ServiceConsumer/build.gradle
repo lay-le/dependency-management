@@ -1,0 +1,48 @@
+apply plugin: 'java'
+
+sourceCompatibility = 1.7
+version = '1.0'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile project (":ServicePublisher")
+    testCompile "org.testng:testng:6.8.8"
+    testCompile 'org.uncommons:reportng:1.1.4'
+    testCompile 'com.google.inject:guice:3.0'
+}
+
+tasks.withType(Test) {
+    // show standard out and standard error of the test JVM(s) on the console
+    testLogging.showStandardStreams = true
+
+    testLogging {
+        events "started", "passed", "skipped", "failed", "standardOut", "standardError"
+        exceptionFormat "full" // default is "short"
+    }
+
+    // set heap size for the test JVM(s)
+    minHeapSize = "64m"
+    maxHeapSize = "256m"
+
+    // set JVM arguments for the test JVM(s)
+    jvmArgs '-XX:MaxPermSize=128m'
+
+    // listen to events in the test execution lifecycle
+    beforeTest { descriptor ->
+        logger.lifecycle("----Running test: " + descriptor)
+    }
+    afterTest { descriptor ->
+        logger.lifecycle("----Finishing test: " + descriptor)
+    }
+}
+
+task testHelloWorld (type: Test) {
+    group = 'HelloWorld'
+    description = 'Test HelloWorld with Publisher'
+    useTestNG() {
+        includeGroups 'TestHelloWorld'
+    }
+}
