@@ -8,5 +8,6 @@ repositories {
 }
 
 dependencies {
-    compile 'org.apache.commons:commons-lang3:3.0'
+    //Uncomment the line below for the fix in ServiceConsumer junit test
+//    compile 'org.apache.commons:commons-lang3:3.0'
 }
