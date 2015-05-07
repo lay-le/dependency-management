@@ -11,3 +11,56 @@ dependencies {
     //Uncomment the line below for the fix in ServiceConsumer junit test
 //    compile 'org.apache.commons:commons-lang3:3.0'
 }
+
+
+//Use for publishing artifact
+buildscript {
+    repositories {
+        maven {
+            url 'http://artifactory.oraclecorp.com/artifactory/repo'
+        }
+
+    }
+    dependencies {
+        classpath(group: 'org.jfrog.buildinfo', name: 'build-info-extractor-gradle', version: '2.2.3')
+    }
+}
+
+repositories {
+    maven { url 'http://artifactory-slc.oraclecorp.com/artifactory/fmw-virtual' }
+    jcenter()
+    mavenCentral()
+}
+
+apply plugin: 'artifactory-publish'
+apply plugin: 'maven-publish'
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
+}
+
+artifactory {
+    contextUrl = "${artifactory_contextUrl}"
+    publish {
+        repository {
+            repoKey = "${artifactory_repoKey}"
+            maven = true
+            username = "${artifactory_user}"
+            password = "${artifactory_password}"
+        }
+        defaults {
+            publications ('mavenJava')
+        }
+    }
+    resolve {
+        repository {
+            repoKey = 'repo'
+            maven = true
+
+        }
+    }
+}
