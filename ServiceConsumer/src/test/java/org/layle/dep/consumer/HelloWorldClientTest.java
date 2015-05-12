@@ -1,4 +1,4 @@
-package com.oracle.ofm.cloud.qa.consumer;
+package org.layle.dep.consumer;
 
 
 import org.junit.Assert;

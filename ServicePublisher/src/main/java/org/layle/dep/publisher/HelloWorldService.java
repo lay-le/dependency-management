@@ -1,4 +1,4 @@
-package com.oracle.ofm.cloud.qa.publisher;
+package org.layle.dep.publisher;
 
 /**
  * Created by layle on 5/1/15.

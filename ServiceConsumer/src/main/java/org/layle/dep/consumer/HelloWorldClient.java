@@ -1,7 +1,7 @@
-package com.oracle.ofm.cloud.qa.consumer;
+package org.layle.dep.consumer;
 
 
-import com.oracle.ofm.cloud.qa.publisher.HelloWorldService;
+import org.layle.dep.publisher.HelloWorldService;
 
 /**
  * Created by layle on 4/30/15.

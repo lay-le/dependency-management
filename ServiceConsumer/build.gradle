@@ -4,14 +4,15 @@ sourceCompatibility = 1.7
 version = '1.0'
 
 repositories {
-    maven { url 'http://artifactory-slc.oraclecorp.com/artifactory/fmw-virtual' }
-    maven { url 'http://artifactory.oraclecorp.com/artifactory/soa-di-release-local' }
+    maven { url "${artifactory_repo_slc}" }
+    maven { url "${artifactory_repo}" }
     jcenter()
     mavenCentral()
 }
 
 dependencies {
 //    compile project (":ServicePublisher")
+//    compile 'dependency-management:ServicePublisher:1.0'
     compile 'dependency-management:ServicePublisher:2.0'
     testCompile 'junit:junit:4.12'
 }
